@@ -1,13 +1,12 @@
-import pandas as pd
 import connections
 from pprint import pprint
+import pickle
 import connections.connections
 
 def assert_val_exists_and_valid_value(val_name, dictionary):
     key_present = val_name in dictionary
     if not key_present:
         print(f'ERROR: Record exists without key \'{val_name}\'\n')
-        pprint(record)
     valid_value = dictionary[val_name] is not None and dictionary[val_name] != ''
     if not valid_value:
         print(f'ERROR: key {val_name} has an invalid value.\n')
@@ -75,17 +74,28 @@ if __name__ == '__main__':
     def parse_record(record):
         categories = {}
         category_words = {}
+        color_map = {
+            'yellow': connections.connections.Colors.YELLOW,
+            'green': connections.connections.Colors.GREEN,
+            'blue': connections.connections.Colors.BLUE,
+            'purple': connections.connections.Colors.PURPLE,
+        }
         for color in ['yellow', 'green', 'blue', 'purple']:
-            categories[color] = record[f'{color}_solution'].lower()
-            category_words[color] = record[f'{color}_words']
-        return categories, category_words
+            categories[color_map[color]] = record[f'{color}_solution'].lower()
+            category_words[color_map[color]] = record[f'{color}_words']
+            # print(color + ' ' +str(categories[color_map[color]])+str(category_words[color_map[color]]))
+        puzzle_num = record[f'puzzle_num']
+        puzzle_date = record[f'date']
+        return categories, category_words, puzzle_num, puzzle_date
 
-            
+    parsed_records = []
+    for record in processed_data:
+        parsed_records.append(parse_record(record))
+    
+    with open('assess/puzzles.pkl', 'wb') as handle:
+        pickle.dump(parsed_records, handle, protocol=pickle.HIGHEST_PROTOCOL)
+
 
     puzzle = connections.connections.Connections(*parse_record(processed_data[0]))
-    puzzle.guess(['chiffon', 'satin', 'velvet', 'land'])
     puzzle.guess(['CHIFFON', 'SATIN', 'SILK', 'VELVET'])
-    
-
     print(puzzle)
-    print(puzzle.categories)
