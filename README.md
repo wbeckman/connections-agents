@@ -25,7 +25,16 @@ The bot has access to one piece of state at an instance level (`self.guesses`) w
   - **list of colors** that that guess solved (empty list if the guess did not solve any colors)
   - **boolean** flag, whether or not the guess was "one away" (three of the words in the guess were in a category, but a fourth word was in a different category)
 
-So, an example of what guesses could look like is this:
+So, for the following puzzle:
+
+```
+IGNITE - BURN, KINDLE, LIGHT, TORCH
+INFORMATION - DATA, INFO, INTEL, NEWS
+SMALL WOODED AREA - DELL, GLEN, HOLLOW, VALLEY
+THINGS WITH CORES - APPLE, COMPUTER, PLANET, REACTOR
+```
+
+an example of what `guesses`` could look like after three gueeses is as follows:
 ```
 {
     ('DELL', 'GLEN', 'HOLLOW', 'VALLEY'): ([Color.BLUE], False), # Correct guess
