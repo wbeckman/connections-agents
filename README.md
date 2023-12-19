@@ -44,6 +44,8 @@ an example of what `guesses`` could look like after three gueeses is as follows:
 
 ```
 
+This piece of state can be useful to see if a guess has already guessed or to perform a process of elimination based on previously guessed 'one away' guesses.
+
 At the entry point in `main.py`, simply change the bot that you want from `RandomBot` to the bot class that you develop. This will test the bot against 183 previous connections puzzles from the NYT to assess its performance. If the bot even gets a few puzzles correct, that's awesome - and WAY better than a random guessing bot. 
 
 Have fun! Let me know if you would like me to change anything or open a PR to fix things that seem to be wrong.
