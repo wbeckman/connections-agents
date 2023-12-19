@@ -19,4 +19,3 @@ class RandomBot(Bot):
             guess = tuple(sorted(random.sample(words, 4)))
             
         return guess
-

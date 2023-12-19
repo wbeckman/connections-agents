@@ -47,13 +47,13 @@ def stat_summary(stats):
     n_wins = 0
     n_categories_sum = 0
     max_categories = 0
-    for puzzle_num, stat in stats.items():
+    for _, stat in stats.items():
         if stat['win_state'] == True:
             n_wins += 1
             n_guesses_solve += len(stat['guesses']) - 4
 
         colors_solved = 0
-        for guess_words, (colors_solved, one_away) in stat['guesses'].items():
+        for guess_words, (colors_solved, _) in stat['guesses'].items():
             if len(colors_solved) >0:
                 print(guess_words)
             n_categories_sum += len(colors_solved)
@@ -69,9 +69,10 @@ def stat_summary(stats):
 
 def assess_all(bot: Bot) -> dict:
     """
-    Assesses performance of a bot on all previous connections puzzles ()
-    (prior to) Returns which colors were guessed correctly, what the
-    incorrect guesses were, whether the puzzle was solved or not.
+    Assesses performance of a bot on all previous connections puzzles
+    (prior to December 11th, 2023) Returns which colors were guessed
+    correctly, what the incorrect guesses were, whether the puzzle was
+    solved or not.
     """
     puzzles = [Connections(*p) for p in load_puzzles()]
     results = {}
