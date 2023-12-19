@@ -1,5 +1,4 @@
 import abc
-from connections.colors import Colors
 from copy import deepcopy
 
 class Bot:
@@ -28,13 +27,6 @@ class Bot:
         guesses = deepcopy(self.guesses)
         self.reset()
         return guesses, win_state
-    
 
     def reset(self):
         self.guesses = {}
-        self.colors_remaining = set([
-            Colors.YELLOW,
-            Colors.GREEN,
-            Colors.BLUE,
-            Colors.PURPLE
-        ])
