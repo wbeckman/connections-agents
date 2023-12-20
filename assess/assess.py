@@ -1,7 +1,7 @@
 import pickle
 import functools
 from connections.connections import Connections
-from bots.bot import Bot
+from agents.agent import Agent
 
 PUZZLES_PATH = 'assess/puzzles.pkl'
 
@@ -67,9 +67,9 @@ def stat_summary(stats):
     print(f'Number of incorrect guesses on SOLVED puzzles (on average): {num_guesses_avg_solve}')
 
 
-def assess_all(bot: Bot) -> dict:
+def assess_all(agent: Agent) -> dict:
     """
-    Assesses performance of a bot on all previous connections puzzles
+    Assesses performance of an agent on all previous connections puzzles
     (prior to December 11th, 2023) Returns which colors were guessed
     correctly, what the incorrect guesses were, whether the puzzle was
     solved or not.
@@ -77,7 +77,7 @@ def assess_all(bot: Bot) -> dict:
     puzzles = [Connections(*p) for p in load_puzzles()]
     results = {}
     for puzzle in puzzles:
-        guesses, win_state = bot.solve(puzzle)
+        guesses, win_state = agent.solve(puzzle)
         results[puzzle.puzzle_num] = {
             'guesses': guesses,
             'win_state': win_state

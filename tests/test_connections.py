@@ -3,7 +3,6 @@
 # test init with both types of initialization
 
 
-
 import pytest
 from connections.connections import Connections
 from connections.colors import Colors

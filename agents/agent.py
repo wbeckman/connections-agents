@@ -1,7 +1,7 @@
 import abc
 from copy import deepcopy
 
-class Bot:
+class Agent:
 
     def __init__(self) -> None:
         self.reset()

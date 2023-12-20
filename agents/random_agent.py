@@ -1,10 +1,10 @@
-from bots.bot import Bot
+from agents.agent import Agent
 import random
 
-class RandomBot(Bot):
+class RandomAgent(Agent):
     """
-    Random bot that will just guess randomly. This bot is not intended to do
-    well, it's just a test of the bot class and the test bed.
+    Random agent that will just guess randomly. This agent is not intended to do
+    well, it's just a test of the Agent class and the test bed.
     """
 
     def __init__(self) -> None:
